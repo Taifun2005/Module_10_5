@@ -1,8 +1,6 @@
 from multiprocessing import Pool
 import time
 import os
-import threading
-from threading import Thread
 
 def read_info(name):
     all_data = []
