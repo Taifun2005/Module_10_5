@@ -12,22 +12,21 @@ def read_info(name):
             all_data.append(line)
 
 # spisok = ['file 1.txt', 'file 2.txt', 'file 3.txt', 'file 4.txt']
-
-filenames = [f'./file {number}.txt' for number in range(1, 5)]
+if __name__ == '__main__':
+    filenames = [f'./file {number}.txt' for number in range(1, 5)]
 
 # Линейный вызов
-started_at = time.time()
-for filename in filenames:
-    read_info(filename)
+    started_at = time.time()
+    for filename in filenames:
+        read_info(filename)
 
 # thread1 = threading.Thread(target=read_info, args=(filenames, ))
 # thread1.start()
-ended_at = time.time()
-elapsed = ended_at - started_at
-print(f'Функция работала {elapsed} ЛИНЕЙНЫЙ вызов')
+    ended_at = time.time()
+    elapsed = ended_at - started_at
+    print(f'Функция работала {elapsed} ЛИНЕЙНЫЙ вызов')
 
 # Многопроцессный
-if __name__ == '__main__':
     started_at = time.time()
     with Pool() as pool:
         pool.map(read_info, filenames)
