@@ -1,7 +1,7 @@
-import multiprocessing
-import threading
+from multiprocessing import Pool
 import time
 import os
+import threading
 from threading import Thread
 
 def read_info(name):
@@ -19,8 +19,11 @@ filenames = [f'./file {number}.txt' for number in range(1, 5)]
 
 # Линейный вызов
 started_at = time.time()
-thread1 = threading.Thread(target=read_info, args=(filenames, ))
-thread1.start()
+for filename in filenames:
+    read_info(filename)
+
+# thread1 = threading.Thread(target=read_info, args=(filenames, ))
+# thread1.start()
 ended_at = time.time()
 elapsed = ended_at - started_at
 print(f'Функция работала {elapsed} ЛИНЕЙНЫЙ вызов')
@@ -33,6 +36,7 @@ if __name__ == '__main__':
     # for
         # process1 = multiprocessing.Process(target=read_info, args=(spisok, ))
         # process1.start()
+    ended_at = time.time()
     elapsed = ended_at - started_at
     print(f'Функция работала {elapsed} МНОГОПРОЦЕССОРНЫЙ вызов')
 
